@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Browse all health supplement and fitness equipment categories at BrandMint Health. Expert-reviewed picks for India and Global buyers.">
+<title>All Categories — BrandMint Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1a7f4e;
+  --green-d: #145f3a;
+  --green-l: #e6f4ed;
+  --green-m: #b7deca;
+  --gold: #b45309;
+  --gold-l: #fef3c7;
+  --blue: #1d4ed8;
+  --blue-l: #eff6ff;
+  --purple: #7c3aed;
+  --purple-l: #f5f3ff;
+  --red: #dc2626;
+  --ink: #0d1117;
+  --ink-2: #1f2937;
+  --ink-3: #374151;
+  --muted: #6b7280;
+  --muted-2: #9ca3af;
+  --border: #e5e7eb;
+  --border-2: #f3f4f6;
+  --bg: #fafafa;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow: 0 2px 6px rgba(0,0,0,0.06), 0 6px 20px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.08);
+  --r: 14px;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+
+/* ── NAV ── */
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nav-brand {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--green);
+  text-decoration: none;
+  letter-spacing: -0.3px;
+}
+.nav-brand span { color: var(--ink); }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-link:hover { color: var(--ink); background: var(--border-2); }
+.nav-link.active { color: var(--green); background: var(--green-l); font-weight: 600; }
+@media(max-width:600px){ .nav-links { display: none; } }
+
+/* ── HERO ── */
+.hero {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 52px 24px 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(26,127,78,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--green-l);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--ink);
+  max-width: 640px;
+  margin: 0 auto 14px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--green);
+}
+.hero-sub {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
+}
+.hero-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: var(--border-2);
+  border-radius: 100px;
+  padding: 4px;
+}
+.hero-stat {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 7px 18px;
+  border-radius: 100px;
+}
+.hero-stat strong { color: var(--ink); font-weight: 700; }
+.hero-stat + .hero-stat { border-left: 1px solid var(--border); }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 58px;
+  z-index: 100;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-btn {
+  flex-shrink: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 16px 16px 14px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.filter-btn:hover { color: var(--ink); }
+.filter-btn.active { color: var(--green); border-bottom-color: var(--green); font-weight: 600; }
+
+/* ── MAIN ── */
+main { max-width: 1080px; margin: 0 auto; padding: 52px 24px 80px; }
+
+/* ── SECTION ── */
+.cat-section { margin-bottom: 60px; }
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1.5px solid var(--border);
+}
+.section-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.si-protein { background: #e6f4ed; }
+.si-vitamins { background: #eff6ff; }
+.si-wellness { background: #f5f3ff; }
+.si-fitness { background: #fef3c7; }
+.si-beauty { background: #fdf2f8; }
+.section-title-group { flex: 1; }
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 2px;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+.section-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted-2);
+  background: var(--border-2);
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 4px;
+  align-self: center;
+}
+
+/* ── GRID ── */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* ── CATEGORY CARD ── */
+.cat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+  position: relative;
+}
+.cat-card:not(.soon):hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--green-m);
+}
+.cat-card.soon { opacity: 0.72; }
+.cat-card-top {
+  padding: 20px 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.cat-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  background: var(--border-2);
+}
+.cat-card-info { flex: 1; min-width: 0; }
+.cat-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.cat-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.cat-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 12px 20px 0;
+}
+.ctag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--border-2);
+  color: var(--muted);
+}
+.ctag-cj { background: var(--purple-l); color: var(--purple); }
+.ctag-amz { background: #fff7ed; color: #c2410c; }
+.ctag-hot { background: #fef2f2; color: var(--red); }
+.cat-btns {
+  display: flex;
+  gap: 8px;
+  padding: 16px 20px 20px;
+  flex-wrap: wrap;
+}
+.cbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.15s;
+  letter-spacing: 0.1px;
+}
+.cbtn-india {
+  background: var(--green-l);
+  color: var(--green-d);
+  border: 1px solid var(--green-m);
+}
+.cbtn-india:hover { background: var(--green); color: white; border-color: var(--green); }
+.cbtn-global {
+  background: var(--blue-l);
+  color: var(--blue);
+  border: 1px solid #bfdbfe;
+}
+.cbtn-global:hover { background: var(--blue); color: white; border-color: var(--blue); }
+.cbtn-soon {
+  background: var(--border-2);
+  color: var(--muted-2);
+  border: 1px solid var(--border);
+  cursor: not-allowed;
+}
+.soon-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  background: var(--gold-l);
+  color: var(--gold);
+  padding: 3px 9px;
+  border-radius: 100px;
+  border: 1px solid #fde68a;
+}
+.live-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  background: var(--green-l);
+  color: var(--green);
+  padding: 3px 9px;
+  border-radius: 100px;
+  border: 1px solid var(--green-m);
+}
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 20px;
+}
+
+/* ── BOTTOM CTA ── */
+.bottom-cta {
+  background: var(--ink);
+  border-radius: 20px;
+  padding: 44px 40px;
+  text-align: center;
+  margin-top: 52px;
+}
+.bottom-cta h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+.bottom-cta p { font-size: 15px; color: rgba(255,255,255,0.65); margin-bottom: 28px; }
+.bottom-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.cta-btn-w {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: white;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.cta-btn-g {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--green);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+/* ── LEGEND ── */
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 18px 24px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.ld-live { background: var(--green); }
+.ld-soon { background: #fcd34d; }
+.ld-cj { background: var(--purple); }
+
+/* ── HIDDEN ── */
+.cat-section.hidden { display: none; }
+.cat-card.hidden { display: none; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:500px) {
+  .hero { padding: 36px 16px 32px; }
+  main { padding: 36px 16px 60px; }
+  .cat-btns { gap: 6px; }
+  .cbtn { font-size: 11px; padding: 7px 11px; }
+  .bottom-cta { padding: 32px 20px; }
+  .section-head { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://brandmint.online" class="nav-brand">Brand<span>Mint</span> Health</a>
+  <div class="nav-links">
+    <a href="https://brandmint.online" class="nav-link">Home</a>
+    <a href="https://health.brandmint.online/categories.html" class="nav-link active">Categories</a>
+    <a href="https://health.brandmint.online/whey-in.html" class="nav-link">India Picks</a>
+    <a href="https://health.brandmint.online/whey-us.html" class="nav-link">Global Picks</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+    Research-backed · Updated March 2026
+  </div>
+  <h1>All Health &<br><em>Wellness Categories</em></h1>
+  <p class="hero-sub">Expert-reviewed supplement and fitness picks for every goal — with separate India and Global editions.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>4</strong> Live categories</div>
+    <div class="hero-stat"><strong>8</strong> Pages available</div>
+    <div class="hero-stat"><strong>9</strong> Coming soon</div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><span class="legend-dot ld-live"></span>Live — available now</div>
+  <div class="legend-item"><span class="legend-dot ld-soon"></span>Coming soon</div>
+  <div class="legend-item"><span class="legend-dot ld-cj"></span>CJ affiliate partner</div>
+  <div class="legend-item">🇮🇳 India edition &nbsp;·&nbsp; 🌍 Global edition</div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCats('all', this)">All Categories</button>
+  <button class="filter-btn" onclick="filterCats('protein', this)">💪 Protein & Performance</button>
+  <button class="filter-btn" onclick="filterCats('vitamins', this)">💊 Vitamins & Supplements</button>
+  <button class="filter-btn" onclick="filterCats('wellness', this)">🌿 Wellness & Recovery</button>
+  <button class="filter-btn" onclick="filterCats('fitness', this)">🏋️ Fitness & Equipment</button>
+  <button class="filter-btn" onclick="filterCats('beauty', this)">✨ Beauty & Personal Care</button>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ══════════════════════════════
+       SECTION 1: PROTEIN & PERFORMANCE
+  ══════════════════════════════ -->
+  <div class="cat-section" data-section="protein">
+    <div class="section-head">
+      <div class="section-icon si-protein">💪</div>
+      <div class="section-title-group">
+        <div class="section-label">Primary category 01</div>
+        <div class="section-title">Protein & Performance</div>
+      </div>
+      <div class="section-count">5 categories</div>
+    </div>
+    <div class="cat-grid">
+
+      <!-- Whey Protein — LIVE -->
+      <div class="cat-card" data-cat="protein">
+        <div class="live-pill">✓ Live</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🥛</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Whey Protein</div>
+            <div class="cat-desc">Concentrate, isolate & hydrolysate — ranked by absorption and value.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-amz">Amazon IN</span>
+          <span class="ctag ctag-amz">Amazon US</span>
+          <span class="ctag ctag-cj">CJ: Naked Nutrition 10%</span>
+        </div>
+        <div class="cat-btns">
+          <a href="https://health.brandmint.online/whey-in.html" class="cbtn cbtn-india">🇮🇳 India Edition</a>
+          <a href="https://health.brandmint.online/whey-us.html" class="cbtn cbtn-global">🌍 Global Edition</a>
+        </div>
+      </div>
+
+      <!-- Creatine — COMING SOON -->
+      <div class="cat-card soon" data-cat="protein">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">⚡</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Creatine</div>
+            <div class="cat-desc">Most researched performance supplement. Monohydrate, HCl & blends.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Naked Nutrition 10%</span>
+          <span class="ctag ctag-hot">50K+ monthly searches</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Pre-Workout — COMING SOON -->
+      <div class="cat-card soon" data-cat="protein">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🔥</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Pre-Workout Supplements</div>
+            <div class="cat-desc">Caffeine-based and stim-free options. Focus, pump & endurance.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Naked Nutrition 10%</span>
+          <span class="ctag ctag-cj">CJ: Herbspro 10%</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Protein Bars — COMING SOON -->
+      <div class="cat-card soon" data-cat="protein">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🍫</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Protein Bars & Snacks</div>
+            <div class="cat-desc">High-protein, low-sugar bars for on-the-go nutrition.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Herbspro 10%</span>
+          <span class="ctag ctag-amz">Amazon IN + US</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Mass Gainers — COMING SOON -->
+      <div class="cat-card soon" data-cat="protein">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🏗️</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Mass Gainers</div>
+            <div class="cat-desc">High-calorie weight gain formulas for hardgainers and bulking phases.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-amz">Amazon IN + US</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SECTION 2: VITAMINS & SUPPLEMENTS
+  ══════════════════════════════ -->
+  <div class="cat-section" data-section="vitamins">
+    <div class="section-head">
+      <div class="section-icon si-vitamins">💊</div>
+      <div class="section-title-group">
+        <div class="section-label">Primary category 02</div>
+        <div class="section-title">Vitamins & Supplements</div>
+      </div>
+      <div class="section-count">6 categories</div>
+    </div>
+    <div class="cat-grid">
+
+      <!-- Multivitamins — LIVE -->
+      <div class="cat-card" data-cat="vitamins">
+        <div class="live-pill">✓ Live</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🌈</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Multivitamins</div>
+            <div class="cat-desc">Men's, women's & general formulas. USP and IFOS certified picks.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-amz">Amazon IN</span>
+          <span class="ctag ctag-amz">Amazon US</span>
+          <span class="ctag ctag-cj">CJ: Life Extension 6%</span>
+          <span class="ctag ctag-cj">CJ: Herbspro 10%</span>
+        </div>
+        <div class="cat-btns">
+          <a href="https://health.brandmint.online/multivitamin-in.html" class="cbtn cbtn-india">🇮🇳 India Edition</a>
+          <a href="https://health.brandmint.online/multivitamins-us.html" class="cbtn cbtn-global">🌍 Global Edition</a>
+        </div>
+      </div>
+
+      <!-- Fish Oil / Omega-3 — LIVE -->
+      <div class="cat-card" data-cat="vitamins">
+        <div class="live-pill">✓ Live</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🐟</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Fish Oil / Omega-3</div>
+            <div class="cat-desc">IFOS certified, high EPA+DHA, triglyceride form. Heart & brain health.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-amz">Amazon IN</span>
+          <span class="ctag ctag-amz">Amazon US</span>
+          <span class="ctag ctag-cj">CJ: Life Extension 6%</span>
+          <span class="ctag ctag-cj">CJ: Herbspro 10%</span>
+        </div>
+        <div class="cat-btns">
+          <a href="https://health.brandmint.online/fish-oil-in.html" class="cbtn cbtn-india">🇮🇳 India Edition</a>
+          <a href="https://health.brandmint.online/fish-oil-us.html" class="cbtn cbtn-global">🌍 Global Edition</a>
+        </div>
+      </div>
+
+      <!-- Collagen — COMING SOON -->
+      <div class="cat-card soon" data-cat="vitamins">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">✨</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Collagen Supplements</div>
+            <div class="cat-desc">Skin, hair, joint & gut health. Types I, II, III collagen peptides.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Ayurveda Experience 15%</span>
+          <span class="ctag ctag-cj">CJ: Vitalheal 15%</span>
+          <span class="ctag ctag-hot">High Pinterest traffic</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Vitamin D3+K2 — COMING SOON -->
+      <div class="cat-card soon" data-cat="vitamins">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">☀️</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Vitamin D3 + K2</div>
+            <div class="cat-desc">Essential combo for bone health, immunity and calcium absorption.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Life Extension 6%</span>
+          <span class="ctag ctag-amz">Amazon IN + US</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Magnesium — COMING SOON -->
+      <div class="cat-card soon" data-cat="vitamins">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🪨</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Magnesium</div>
+            <div class="cat-desc">Glycinate, citrate & malate for sleep, muscle recovery & stress.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Herbspro 10%</span>
+          <span class="ctag ctag-amz">Amazon IN + US</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Ashwagandha — COMING SOON -->
+      <div class="cat-card soon" data-cat="vitamins">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🌿</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Ashwagandha & Adaptogens</div>
+            <div class="cat-desc">KSM-66, Sensoril & full-spectrum root. Stress, cortisol & energy.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Ayurveda Experience 15%</span>
+          <span class="ctag ctag-hot">Trending in India</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SECTION 3: WELLNESS & RECOVERY
+  ══════════════════════════════ -->
+  <div class="cat-section" data-section="wellness">
+    <div class="section-head">
+      <div class="section-icon si-wellness">🌿</div>
+      <div class="section-title-group">
+        <div class="section-label">Primary category 03</div>
+        <div class="section-title">Wellness & Recovery</div>
+      </div>
+      <div class="section-count">4 categories</div>
+    </div>
+    <div class="cat-grid">
+
+      <!-- Sleep & Stress — COMING SOON -->
+      <div class="cat-card soon" data-cat="wellness">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">😴</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Sleep & Stress Supplements</div>
+            <div class="cat-desc">Melatonin, L-theanine, GABA & magnesium for deep sleep and calm.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Vitalheal 15%</span>
+          <span class="ctag ctag-cj">CJ: Stonehenge 10%</span>
+          <span class="ctag ctag-cj">CJ: Life Extension 6%</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Joint Health — COMING SOON -->
+      <div class="cat-card soon" data-cat="wellness">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🦴</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Joint Health</div>
+            <div class="cat-desc">Glucosamine, chondroitin, turmeric & boswellia. Mobility & pain relief.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Vitalheal 15%</span>
+          <span class="ctag ctag-cj">CJ: Life Extension 6%</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Weight Management — COMING SOON -->
+      <div class="cat-card soon" data-cat="wellness">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">⚖️</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Weight Management</div>
+            <div class="cat-desc">Green tea extract, CLA, appetite control & metabolism support.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Vitalheal 15%</span>
+          <span class="ctag ctag-cj">CJ: Stonehenge 10%</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Gut Health — COMING SOON -->
+      <div class="cat-card soon" data-cat="wellness">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🦠</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Gut Health & Probiotics</div>
+            <div class="cat-desc">Multi-strain probiotics, prebiotics & digestive enzymes.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Life Extension 6%</span>
+          <span class="ctag ctag-cj">CJ: Herbspro 10%</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SECTION 4: FITNESS & EQUIPMENT
+  ══════════════════════════════ -->
+  <div class="cat-section" data-section="fitness">
+    <div class="section-head">
+      <div class="section-icon si-fitness">🏋️</div>
+      <div class="section-title-group">
+        <div class="section-label">Primary category 04</div>
+        <div class="section-title">Fitness & Equipment</div>
+      </div>
+      <div class="section-count">4 categories</div>
+    </div>
+    <div class="cat-grid">
+
+      <!-- Home Gym Equipment — LIVE -->
+      <div class="cat-card" data-cat="fitness">
+        <div class="live-pill">✓ Live</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🏠</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Home Gym Equipment</div>
+            <div class="cat-desc">Dumbbells, benches, treadmills & resistance systems. All budgets.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-amz">Amazon IN</span>
+          <span class="ctag ctag-amz">Amazon US</span>
+          <span class="ctag ctag-cj">CJ: X3 Gym 15%</span>
+          <span class="ctag ctag-cj">CJ: Core Home Fitness 5%</span>
+        </div>
+        <div class="cat-btns">
+          <a href="https://health.brandmint.online/fitness-in.html" class="cbtn cbtn-india">🇮🇳 India Edition</a>
+          <a href="https://health.brandmint.online/fitness-us.html" class="cbtn cbtn-global">🌍 Global Edition</a>
+        </div>
+      </div>
+
+      <!-- Yoga & Mindfulness — COMING SOON -->
+      <div class="cat-card soon" data-cat="fitness">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🧘</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Yoga & Mindfulness</div>
+            <div class="cat-desc">Mats, blocks, straps & online yoga subscriptions. Beginner to advanced.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Bulldog Yoga $10/signup</span>
+          <span class="ctag ctag-cj">CJ: Power Systems 10%</span>
+          <span class="ctag ctag-hot">$10 flat — no purchase!</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Resistance Bands — COMING SOON -->
+      <div class="cat-card soon" data-cat="fitness">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🔗</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Resistance Bands & Accessories</div>
+            <div class="cat-desc">Loop bands, tube bands, pull-up assist. Portable strength training.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-amz">Amazon IN + US</span>
+          <span class="ctag ctag-cj">CJ: Power Systems 10%</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Sports Nutrition Accessories — COMING SOON -->
+      <div class="cat-card soon" data-cat="fitness">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🧴</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Sports Accessories</div>
+            <div class="cat-desc">Shakers, gym bags, gym gloves, wraps & recovery tools.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-amz">Amazon IN + US</span>
+          <span class="ctag ctag-cj">CJ: Herbspro 10%</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SECTION 5: BEAUTY & PERSONAL CARE
+  ══════════════════════════════ -->
+  <div class="cat-section" data-section="beauty">
+    <div class="section-head">
+      <div class="section-icon si-beauty">✨</div>
+      <div class="section-title-group">
+        <div class="section-label">Primary category 05</div>
+        <div class="section-title">Beauty & Personal Care</div>
+      </div>
+      <div class="section-count">3 categories</div>
+    </div>
+    <div class="cat-grid">
+
+      <!-- Hair Skin Nails — COMING SOON -->
+      <div class="cat-card soon" data-cat="beauty">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">💆</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Hair, Skin & Nails</div>
+            <div class="cat-desc">Biotin, silica, keratin & collagen. Science-backed beauty supplements.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Ayurveda Experience 15%</span>
+          <span class="ctag ctag-cj">CJ: Vitalheal 15%</span>
+          <span class="ctag ctag-hot">High female Pinterest traffic</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Ayurveda — COMING SOON -->
+      <div class="cat-card soon" data-cat="beauty">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🪷</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Ayurvedic Supplements</div>
+            <div class="cat-desc">Triphala, Brahmi, Shatavari & traditional Ayurvedic formulas.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Ayurveda Experience 15%</span>
+          <span class="ctag ctag-hot">Strong India + UK demand</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+      <!-- Men's Grooming — COMING SOON -->
+      <div class="cat-card soon" data-cat="beauty">
+        <div class="soon-pill">Coming Soon</div>
+        <div class="cat-card-top">
+          <div class="cat-card-icon">🧔</div>
+          <div class="cat-card-info">
+            <div class="cat-name">Men's Personal Care</div>
+            <div class="cat-desc">Beard care, skin care & grooming supplements for men.</div>
+          </div>
+        </div>
+        <div class="cat-tags">
+          <span class="ctag ctag-cj">CJ: Herbspro 10%</span>
+          <span class="ctag ctag-amz">Amazon IN + US</span>
+        </div>
+        <div class="cat-btns">
+          <span class="cbtn cbtn-soon">🇮🇳 India — Soon</span>
+          <span class="cbtn cbtn-soon">🌍 Global — Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="bottom-cta">
+    <h3>Can't find your category?</h3>
+    <p>New categories go live monthly. Check back or start with our most popular pages right now.</p>
+    <div class="bottom-cta-btns">
+      <a href="https://health.brandmint.online/whey-in.html" class="cta-btn-w">🇮🇳 Best Whey — India</a>
+      <a href="https://health.brandmint.online/whey-us.html" class="cta-btn-g">🌍 Best Whey — Global</a>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function filterCats(cat, btn) {
+  // Update active button
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const sections = document.querySelectorAll('.cat-section');
+  if (cat === 'all') {
+    sections.forEach(s => s.classList.remove('hidden'));
+    return;
+  }
+  sections.forEach(s => {
+    s.classList.toggle('hidden', s.dataset.section !== cat);
+  });
+}
+</script>
+</body>
+</html>
