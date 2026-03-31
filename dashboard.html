@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrandMint Health — Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0d1117;--ink2:#1f2937;--ink3:#374151;--muted:#6b7280;--muted2:#9ca3af;--border:#e5e7eb;--border2:#f3f4f6;--bg:#f8fafc;--white:#fff;--green:#1a7f4e;--greenl:#e6f4ed;--greenm:#b7deca;--amber:#d97706;--amberl:#fef3c7;--blue:#1d4ed8;--bluel:#eff6ff;--red:#dc2626;--redl:#fef2f2;--purple:#7c3aed;--purplel:#f5f3ff;--r:12px;--rs:8px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6}
+/* NAV */
+.topbar{background:var(--ink);padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:300}
+.topbar-brand{font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:#fff;letter-spacing:-.3px}
+.topbar-brand span{color:#4ade80}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.topbar-date{font-size:12px;color:rgba(255,255,255,.5)}
+.topbar-pill{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
+/* SUMMARY */
+.summary{background:var(--white);border-bottom:1px solid var(--border);padding:20px 24px}
+.summary-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.sum-card{background:var(--bg);border-radius:var(--rs);padding:12px 18px;text-align:center;min-width:90px}
+.sum-n{font-size:22px;font-weight:600;line-height:1;font-family:'Fraunces',serif}
+.sum-l{font-size:11px;color:var(--muted);margin-top:2px;font-weight:500}
+.sn-g{color:var(--green)}.sn-a{color:var(--amber)}.sn-r{color:var(--red)}.sn-b{color:var(--blue)}
+.progress-wrap{flex:1;min-width:200px}
+.progress-label{font-size:12px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
+.progress-bar{height:8px;background:var(--border2);border-radius:100px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#4ade80);border-radius:100px;transition:width .4s}
+/* CHANNEL TABS */
+.channel-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;position:sticky;top:52px;z-index:200}
+.channel-bar::-webkit-scrollbar{display:none}
+.ch-tab{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:14px 16px 12px;font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.ch-tab:hover{color:var(--ink)}
+.ch-tab.active{color:var(--ink);border-bottom-color:var(--ink)}
+.ch-icon{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0}
+.cq{background:#b45309}.cp{background:#dc2626}.cw{background:#16a34a}.ct{background:#0ea5e9}.cr{background:#ea580c}.cm{background:#374151}.cc{background:#7c3aed}.cg{background:#111827}.ch{background:#0f766e}.cl{background:#1a7f4e}
+.ch-badge{font-size:10px;font-weight:700;padding:1px 6px;border-radius:100px;background:var(--border2);color:var(--muted);margin-left:2px}
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:28px 24px 80px}
+/* SECTION HEADER */
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sec-title{font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:var(--ink)}
+.sec-sub{font-size:13px;color:var(--muted)}
+/* WEEK BLOCKS */
+.week-block{margin-bottom:36px}
+.week-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted2);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.week-label::after{content:'';flex:1;height:1px;background:var(--border)}
+/* TASK ROW */
+.task-row{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r);margin-bottom:8px;transition:all .2s;cursor:pointer;position:relative}
+.task-row:hover{border-color:var(--greenm);box-shadow:0 2px 8px rgba(26,127,78,.08)}
+.task-row.done{background:#fafafa;opacity:.65}
+.task-row.done .task-title{text-decoration:line-through;color:var(--muted)}
+.task-row.next-up{border-color:var(--amber);background:var(--amberl);box-shadow:0 2px 12px rgba(217,119,6,.15)}
+.task-row.next-up::before{content:'DO THIS NEXT';position:absolute;top:-9px;left:14px;font-size:9px;font-weight:700;letter-spacing:1px;background:var(--amber);color:#fff;padding:2px 8px;border-radius:100px}
+.task-cb{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s;background:var(--white)}
+.task-row.done .task-cb{background:var(--green);border-color:var(--green)}
+.task-row.next-up .task-cb{border-color:var(--amber)}
+.check-svg{display:none;width:11px;height:11px}
+.task-row.done .check-svg{display:block}
+.task-main{flex:1;min-width:0}
+.task-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px}
+.task-title{font-size:14px;font-weight:500;color:var(--ink)}
+.task-detail{font-size:12px;color:var(--muted);line-height:1.5}
+.task-meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.task-date{font-size:11px;font-weight:600;color:var(--muted2);white-space:nowrap;font-family:'DM Sans',monospace}
+.pill{font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px}
+.ph{background:var(--redl);color:var(--red)}.pm{background:var(--amberl);color:var(--amber)}.pl{background:var(--bluel);color:var(--blue)}.pn{background:var(--border2);color:var(--muted)}
+.task-link{font-size:11px;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:3px;margin-top:4px}
+.task-link:hover{text-decoration:underline}
+/* CHANNEL PAGE */
+.ch-page{display:none}
+.ch-page.active{display:block}
+/* QUICK LINKS */
+.quick-links{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:28px}
+.qlink{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--white);border:1px solid var(--border);border-radius:var(--r);text-decoration:none;color:var(--ink);transition:all .15s}
+.qlink:hover{border-color:var(--greenm);transform:translateY(-1px)}
+.qlink-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.qlink-body{min-width:0}
+.qlink-name{font-size:13px;font-weight:500}
+.qlink-url{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* CHANNEL DETAIL */
+.ch-detail{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.ch-detail-title{font-size:15px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.ch-detail-sub{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.5}
+.ch-stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:16px}
+.ch-stat{background:var(--bg);border-radius:var(--rs);padding:10px;text-align:center}
+.ch-stat-n{font-size:18px;font-weight:600;font-family:'Fraunces',serif}
+.ch-stat-l{font-size:11px;color:var(--muted)}
+.rule-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.rule-list li{display:flex;gap:8px;font-size:13px;color:var(--muted)}
+.rule-list li::before{content:'→';color:var(--green);font-weight:700;flex-shrink:0}
+/* HOSTINGER GUIDE */
+.hostinger-guide{background:var(--ink);border-radius:var(--r);padding:24px;color:#fff;margin-bottom:20px}
+.hostinger-guide h3{font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px}
+.hostinger-guide p{font-size:13px;color:rgba(255,255,255,.7);margin-bottom:16px;line-height:1.6}
+.nav-table{width:100%;border-collapse:collapse}
+.nav-table th{font-size:11px;font-weight:600;text-align:left;color:rgba(255,255,255,.5);padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.1);letter-spacing:.8px;text-transform:uppercase}
+.nav-table td{font-size:13px;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.85);vertical-align:top}
+.nav-table tr:last-child td{border-bottom:none}
+.nav-url{font-family:monospace;font-size:12px;color:#4ade80}
+/* CJ TABLE */
+.cj-table{width:100%;border-collapse:collapse;font-size:13px}
+.cj-table th{background:var(--ink2);color:#fff;padding:8px 12px;text-align:left;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.cj-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.cj-table tr:last-child td{border-bottom:none}
+.cj-table tr:hover td{background:var(--bg)}
+.cj-comm-g{font-weight:600;color:var(--green)}
+.cj-comm-a{font-weight:600;color:var(--amber)}
+.status-dot{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600}
+.dot-g{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.dot-a{width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.dot-r{width:6px;height:6px;border-radius:50%;background:var(--red)}
+/* FILTER SHOWN/HIDDEN */
+.task-row.hidden{display:none}
+/* HIDDEN PANE */
+.pane{display:none}.pane.show{display:block}
+/* RESPONSIVE */
+@media(max-width:600px){main{padding:20px 14px 60px}.task-meta{display:none}.quick-links{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">Brand<span>Mint</span> Health <span style="color:rgba(255,255,255,.3);font-size:13px;font-weight:400;font-family:'DM Sans',sans-serif;margin-left:6px">Command Center</span></div>
+  <div class="topbar-right">
+    <span class="topbar-date" id="todaydate"></span>
+    <span class="topbar-pill" id="overall-pct">0% done</span>
+  </div>
+</div>
+
+<div class="summary">
+  <div class="summary-inner">
+    <div class="sum-card"><div class="sum-n sn-b" id="total-n">0</div><div class="sum-l">Total tasks</div></div>
+    <div class="sum-card"><div class="sum-n sn-g" id="done-n">0</div><div class="sum-l">Completed</div></div>
+    <div class="sum-card"><div class="sum-n sn-a" id="pending-n">0</div><div class="sum-l">Pending</div></div>
+    <div class="sum-card"><div class="sum-n sn-r" id="overdue-n">0</div><div class="sum-l">Overdue</div></div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Overall progress</span><span id="pct-label">0 / 0 tasks</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="channel-bar">
+  <button class="ch-tab active" onclick="switchTab('all',this)">
+    <span class="ch-icon" style="background:#374151">All</span> All Tasks
+  </button>
+  <button class="ch-tab" onclick="switchTab('quora',this)">
+    <span class="ch-icon cq">Q</span> Quora <span class="ch-badge" id="badge-quora">0</span>
+  </button>
+  <button class="ch-tab" onclick="switchTab('whatsapp',this)">
+    <span class="ch-icon cw">W</span> WhatsApp
+  </button>
+  <button class="ch-tab" onclick="switchTab('reddit',this)">
+    <span class="ch-icon cr">R</span> Reddit
+  </button>
+  <button class="ch-tab" onclick="switchTab('medium',this)">
+    <span class="ch-icon cm">M</span> Medium
+  </button>
+  <button class="ch-tab" onclick="switchTab('pinterest',this)">
+    <span class="ch-icon cp">P</span> Pinterest
+  </button>
+  <button class="ch-tab" onclick="switchTab('cj',this)">
+    <span class="ch-icon cc">$</span> CJ Affiliates
+  </button>
+  <button class="ch-tab" onclick="switchTab('pages',this)">
+    <span class="ch-icon cg">G</span> GitHub Pages
+  </button>
+  <button class="ch-tab" onclick="switchTab('hostinger',this)">
+    <span class="ch-icon ch">H</span> Hostinger Nav
+  </button>
+</div>
+
+<main>
+
+<!-- ===== ALL TASKS VIEW ===== -->
+<div class="pane show" id="pane-all">
+  <div class="sec-hd">
+    <div><div class="sec-title">Full Task Timeline</div><div class="sec-sub">Check a task to mark complete — next pending task highlights automatically</div></div>
+  </div>
+
+  <div id="task-container"></div>
+</div>
+
+<!-- ===== QUORA ===== -->
+<div class="pane" id="pane-quora">
+  <div class="ch-detail">
+    <div class="ch-detail-title"><span class="ch-icon cq" style="width:28px;height:28px;font-size:13px">Q</span> Quora — Content Strategy</div>
+    <div class="ch-detail-sub">Your fastest path to Google-indexed traffic. Answers rank within 48 hours. Profile: quora.com/profile/Shashwat-B-8. Max 3 answers per day. Link only in final 2 lines.</div>
+    <div class="ch-stat-row">
+      <div class="ch-stat"><div class="ch-stat-n" id="q-posted">0</div><div class="ch-stat-l">Answers posted</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">20</div><div class="ch-stat-l">Total planned</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">3</div><div class="ch-stat-l">Max per day</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">48h</div><div class="ch-stat-l">Google index</div></div>
+    </div>
+    <ul class="rule-list">
+      <li>Complete profile first — name, photo, bio, topic credentials before posting any answer</li>
+      <li>Post Q5 first (educational) → Q1 (product recommendation) → Q6 (different category)</li>
+      <li>Wait minimum 2 hours between posts on the same day</li>
+      <li>Add answer credential after each post: click ··· → Edit credential → "Founder, BrandMint Health"</li>
+      <li>Share each answer URL on WhatsApp Channel immediately for first upvotes</li>
+    </ul>
+  </div>
+  <div class="quick-links">
+    <a href="https://www.quora.com/profile/Shashwat-B-8" target="_blank" class="qlink"><span class="ch-icon cq qlink-icon">Q</span><div class="qlink-body"><div class="qlink-name">Your Quora profile</div><div class="qlink-url">quora.com/profile/Shashwat-B-8</div></div></a>
+    <a href="https://health.brandmint.online" target="_blank" class="qlink"><span class="ch-icon cl qlink-icon">BM</span><div class="qlink-body"><div class="qlink-name">Answer link page</div><div class="qlink-url">health.brandmint.online</div></div></a>
+  </div>
+  <div id="task-container-quora"></div>
+</div>
+
+<!-- ===== WHATSAPP ===== -->
+<div class="pane" id="pane-whatsapp">
+  <div class="ch-detail">
+    <div class="ch-detail-title"><span class="ch-icon cw" style="width:28px;height:28px;font-size:13px">W</span> WhatsApp + Telegram</div>
+    <div class="ch-detail-sub">WhatsApp Channel: "BrandMint Health | Supplement Deals India" — your number stays hidden from subscribers. Mirror everything to Telegram for UK audience. 1 post per day, every day.</div>
+    <div class="ch-stat-row">
+      <div class="ch-stat"><div class="ch-stat-n">1</div><div class="ch-stat-l">Post per day</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">0%</div><div class="ch-stat-l">Number visible</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">UK</div><div class="ch-stat-l">Telegram focus</div></div>
+    </div>
+    <ul class="rule-list">
+      <li>Channel name: BrandMint Health | Supplement Deals India</li>
+      <li>Profile pic: BrandMint Health logo from brandmint.online</li>
+      <li>Go to Settings → Privacy → Phone Number → Nobody</li>
+      <li>Mirror every WhatsApp post to Telegram same day</li>
+      <li>Post format: 1 supplement fact or deal + relevant page link</li>
+    </ul>
+  </div>
+  <div id="task-container-whatsapp"></div>
+</div>
+
+<!-- ===== REDDIT ===== -->
+<div class="pane" id="pane-reddit">
+  <div class="ch-detail">
+    <div class="ch-detail-title"><span class="ch-icon cr" style="width:28px;height:28px;font-size:13px">R</span> Reddit Strategy</div>
+    <div class="ch-detail-sub">Do NOT post links for first 7 days. Build karma through genuine answers only. Subreddits: r/IndiaFitness, r/Supplements, r/WeightLoss, r/india, r/homegym. One viral Reddit post = 500-2000 visitors in 24 hours.</div>
+    <div class="ch-stat-row">
+      <div class="ch-stat"><div class="ch-stat-n">7</div><div class="ch-stat-l">Days no links</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">5</div><div class="ch-stat-l">Subreddits</div></div>
+    </div>
+    <ul class="rule-list">
+      <li>r/IndiaFitness — primary (180K members, Indian supplement buyers)</li>
+      <li>r/Supplements — global (300K members, high buyer intent)</li>
+      <li>r/WeightLoss — broad audience (800K members)</li>
+      <li>r/homegym — for X3 and fitness equipment content</li>
+      <li>Day 7+: drop page link naturally — "I wrote a detailed comparison at BrandMint Health if helpful"</li>
+    </ul>
+  </div>
+  <div class="quick-links">
+    <a href="https://reddit.com/r/IndiaFitness" target="_blank" class="qlink"><span class="ch-icon cr qlink-icon">r/</span><div class="qlink-body"><div class="qlink-name">r/IndiaFitness</div><div class="qlink-url">reddit.com/r/IndiaFitness</div></div></a>
+    <a href="https://reddit.com/r/Supplements" target="_blank" class="qlink"><span class="ch-icon cr qlink-icon">r/</span><div class="qlink-body"><div class="qlink-name">r/Supplements</div><div class="qlink-url">reddit.com/r/Supplements</div></div></a>
+    <a href="https://reddit.com/r/homegym" target="_blank" class="qlink"><span class="ch-icon cr qlink-icon">r/</span><div class="qlink-body"><div class="qlink-name">r/homegym</div><div class="qlink-url">reddit.com/r/homegym</div></div></a>
+  </div>
+  <div id="task-container-reddit"></div>
+</div>
+
+<!-- ===== MEDIUM ===== -->
+<div class="pane" id="pane-medium">
+  <div class="ch-detail">
+    <div class="ch-detail-title"><span class="ch-icon cm" style="width:28px;height:28px;font-size:13px">M</span> Medium Articles</div>
+    <div class="ch-detail-sub">Medium articles rank on Google in 3-7 days — far faster than your own domain. 1 article per week, 800+ words. Link to your pages. Account: medium.com/@brandminthealth</div>
+    <div class="ch-stat-row">
+      <div class="ch-stat"><div class="ch-stat-n">1/wk</div><div class="ch-stat-l">Target cadence</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">800+</div><div class="ch-stat-l">Words minimum</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">3-7d</div><div class="ch-stat-l">Google index</div></div>
+    </div>
+  </div>
+  <div id="task-container-medium"></div>
+</div>
+
+<!-- ===== PINTEREST ===== -->
+<div class="pane" id="pane-pinterest">
+  <div class="ch-detail">
+    <div class="ch-detail-title"><span class="ch-icon cp" style="width:28px;height:28px;font-size:13px">P</span> Pinterest Rebuild</div>
+    <div class="ch-detail-sub">Old account deactivated — DO NOT try to recover. New account after 30 days. Different email, device, IP. Slow protocol: profile only for 7 days, then 1 board, then gradual pins. First link pin only on Day 20.</div>
+    <div class="ch-stat-row">
+      <div class="ch-stat"><div class="ch-stat-n" style="color:var(--red)">Dead</div><div class="ch-stat-l">Old account</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">Apr 30</div><div class="ch-stat-l">New account date</div></div>
+      <div class="ch-stat"><div class="ch-stat-n">May 20</div><div class="ch-stat-l">First link pin</div></div>
+    </div>
+    <ul class="rule-list">
+      <li>Use completely different email — new Gmail not linked to old account</li>
+      <li>Use mobile data on phone — not same WiFi as old account</li>
+      <li>Account name: BrandMint Health Reviews (slightly different)</li>
+      <li>Never more than 30% of pins with external links</li>
+      <li>Target UK boards — 52% of your CJ conversions are UK buyers</li>
+    </ul>
+  </div>
+  <div id="task-container-pinterest"></div>
+</div>
+
+<!-- ===== CJ AFFILIATES ===== -->
+<div class="pane" id="pane-cj">
+  <div class="ch-detail">
+    <div class="ch-detail-title"><span class="ch-icon cc" style="width:28px;height:28px;font-size:13px">$</span> CJ Affiliate Portfolio</div>
+    <div class="ch-detail-sub">6 active advertisers. Priority: Longevity Method (20%) and Herbspro (10%, 60-day cookie). Get pending links approved ASAP — Naked Nutrition, Bulldog Yoga, X3 are your highest-EPC opportunities.</div>
+  </div>
+  <div style="overflow-x:auto;margin-bottom:16px">
+    <table class="cj-table">
+      <thead><tr><th>Advertiser</th><th>Commission</th><th>Cookie</th><th>Status</th><th>Page to use on</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Longevity Method</strong></td><td class="cj-comm-g">20%</td><td>—</td><td><span class="status-dot"><span class="dot-g"></span>Active</span></td><td>longevity.html (to build)</td><td>Get tracking link NOW</td></tr>
+        <tr><td><strong>Herbspro.com</strong></td><td class="cj-comm-g">10%</td><td>60 days</td><td><span class="status-dot"><span class="dot-g"></span>Active — deployed</span></td><td>All US pages ✓</td><td>Add to whey-us, India pages</td></tr>
+        <tr><td><strong>Core Home Fitness</strong></td><td class="cj-comm-a">5%</td><td>—</td><td><span class="status-dot"><span class="dot-g"></span>Active — deployed</span></td><td>fitness-us.html ✓</td><td>Add to categories page</td></tr>
+        <tr><td><strong>GearUP</strong></td><td class="cj-comm-g">70%</td><td>—</td><td><span class="status-dot"><span class="dot-g"></span>Active</span></td><td>deals.html only</td><td>Off-niche — deals page only</td></tr>
+        <tr><td><strong>Kings Camo</strong></td><td class="cj-comm-a">5-8%</td><td>—</td><td><span class="status-dot"><span class="dot-g"></span>Active</span></td><td>deals.html only</td><td>Off-niche — deals page only</td></tr>
+        <tr><td><strong>Velocity Outdoor</strong></td><td class="cj-comm-a">5%</td><td>—</td><td><span class="status-dot"><span class="dot-g"></span>Active</span></td><td>deals.html only</td><td>Off-niche — deals page only</td></tr>
+        <tr><td><strong>Naked Nutrition</strong></td><td class="cj-comm-g">10%</td><td>—</td><td><span class="status-dot"><span class="dot-a"></span>Pending</span></td><td>whey-us + creatine</td><td>Send outreach message in CJ</td></tr>
+        <tr><td><strong>Bulldog Online Yoga</strong></td><td class="cj-comm-g">$10/signup</td><td>—</td><td><span class="status-dot"><span class="dot-a"></span>Pending</span></td><td>yoga.html (to build)</td><td>Send outreach message in CJ</td></tr>
+        <tr><td><strong>Life Extension</strong></td><td class="cj-comm-a">6%</td><td>—</td><td><span class="status-dot"><span class="dot-a"></span>Pending</span></td><td>multivitamins-us, fish-oil-us</td><td>Send outreach message in CJ</td></tr>
+        <tr><td><strong>X3 Home Gym</strong></td><td class="cj-comm-g">15%</td><td>—</td><td><span class="status-dot"><span class="dot-a"></span>Pending</span></td><td>fitness-us.html</td><td>Send outreach message in CJ</td></tr>
+        <tr><td><strong>Vitalheal</strong></td><td class="cj-comm-g">15%</td><td>—</td><td><span class="status-dot"><span class="dot-a"></span>Pending</span></td><td>sleep, collagen, hair-skin</td><td>Send outreach message in CJ</td></tr>
+        <tr><td><strong>Ayurveda Experience</strong></td><td class="cj-comm-g">15%</td><td>—</td><td><span class="status-dot"><span class="dot-a"></span>Pending</span></td><td>collagen + hair-skin</td><td>Send outreach message in CJ</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="task-container-cj"></div>
+</div>
+
+<!-- ===== GITHUB PAGES ===== -->
+<div class="pane" id="pane-pages">
+  <div class="ch-detail">
+    <div class="ch-detail-title"><span class="ch-icon cg" style="width:28px;height:28px;font-size:13px">G</span> GitHub Pages — health.brandmint.online</div>
+    <div class="ch-detail-sub">Repo: github.com/shashwatb-hub/brandmint-health. All files deploy automatically. Upload via Add file → Upload files → Commit. All pages live within 2 minutes of upload.</div>
+    <div style="overflow-x:auto;margin-bottom:12px">
+      <table class="cj-table">
+        <thead><tr><th>File</th><th>URL</th><th>Status</th><th>Next action</th></tr></thead>
+        <tbody>
+          <tr><td>whey-in.html</td><td style="font-family:monospace;font-size:11px">/whey-in.html</td><td><span class="status-dot"><span class="dot-g"></span>Live</span></td><td>Add Herbspro button</td></tr>
+          <tr><td>multivitamin-in.html</td><td style="font-family:monospace;font-size:11px">/multivitamin-in.html</td><td><span class="status-dot"><span class="dot-g"></span>Live</span></td><td>Add Herbspro button</td></tr>
+          <tr><td>fish-oil-in.html</td><td style="font-family:monospace;font-size:11px">/fish-oil-in.html</td><td><span class="status-dot"><span class="dot-g"></span>Live</span></td><td>Add Herbspro button</td></tr>
+          <tr><td>fitness-in.html</td><td style="font-family:monospace;font-size:11px">/fitness-in.html</td><td><span class="status-dot"><span class="dot-g"></span>Live</span></td><td>Add Herbspro button</td></tr>
+          <tr><td>whey-us.html</td><td style="font-family:monospace;font-size:11px">/whey-us.html</td><td><span class="status-dot"><span class="dot-a"></span>Built — not uploaded</span></td><td>Upload to GitHub NOW</td></tr>
+          <tr><td>multivitamins-us.html</td><td style="font-family:monospace;font-size:11px">/multivitamins-us.html</td><td><span class="status-dot"><span class="dot-g"></span>Live</span></td><td>—</td></tr>
+          <tr><td>fish-oil-us.html</td><td style="font-family:monospace;font-size:11px">/fish-oil-us.html</td><td><span class="status-dot"><span class="dot-g"></span>Live</span></td><td>—</td></tr>
+          <tr><td>fitness-us.html</td><td style="font-family:monospace;font-size:11px">/fitness-us.html</td><td><span class="status-dot"><span class="dot-g"></span>Live</span></td><td>Update X3 CJ link when received</td></tr>
+          <tr><td>categories.html</td><td style="font-family:monospace;font-size:11px">/categories.html</td><td><span class="status-dot"><span class="dot-a"></span>Built — not uploaded</span></td><td>Upload to GitHub NOW</td></tr>
+          <tr><td>dashboard.html</td><td style="font-family:monospace;font-size:11px">/dashboard.html</td><td><span class="status-dot"><span class="dot-a"></span>This file — upload now</span></td><td>Upload to GitHub NOW</td></tr>
+          <tr><td>longevity.html</td><td style="font-family:monospace;font-size:11px">/longevity.html</td><td><span class="status-dot"><span class="dot-r"></span>Not built yet</span></td><td>Paste Longevity Method CJ link</td></tr>
+          <tr><td>creatine.html</td><td style="font-family:monospace;font-size:11px">/creatine.html</td><td><span class="status-dot"><span class="dot-r"></span>Not built yet</span></td><td>Need Naked Nutrition CJ link</td></tr>
+          <tr><td>yoga.html</td><td style="font-family:monospace;font-size:11px">/yoga.html</td><td><span class="status-dot"><span class="dot-r"></span>Not built yet</span></td><td>Need Bulldog Yoga CJ link</td></tr>
+          <tr><td>sleep.html</td><td style="font-family:monospace;font-size:11px">/sleep.html</td><td><span class="status-dot"><span class="dot-r"></span>Not built yet</span></td><td>Claude builds next session</td></tr>
+          <tr><td>collagen.html</td><td style="font-family:monospace;font-size:11px">/collagen.html</td><td><span class="status-dot"><span class="dot-r"></span>Not built yet</span></td><td>Need Ayurveda Experience CJ link</td></tr>
+          <tr><td>deals.html</td><td style="font-family:monospace;font-size:11px">/deals.html</td><td><span class="status-dot"><span class="dot-r"></span>Not built yet</span></td><td>Claude builds — no blocker</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="task-container-pages"></div>
+</div>
+
+<!-- ===== HOSTINGER NAV ===== -->
+<div class="pane" id="pane-hostinger">
+  <div class="hostinger-guide">
+    <h3>Hostinger Navigation Setup</h3>
+    <p>Your landing page at brandmint.online can have tabs in the navigation. Each tab links to a page. Here are the exact tab names and URLs to add. In Hostinger Website Builder: click the navigation element → Add menu item → paste the URL.</p>
+    <table class="nav-table">
+      <thead><tr><th>Tab label</th><th>URL to paste</th><th>What it opens</th></tr></thead>
+      <tbody>
+        <tr><td>Home</td><td class="nav-url">https://brandmint.online</td><td>Your main landing page</td></tr>
+        <tr><td>All Categories</td><td class="nav-url">https://health.brandmint.online/categories.html</td><td>Hub page — all product categories, India + Global buttons</td></tr>
+        <tr><td>India Picks</td><td class="nav-url">https://health.brandmint.online/whey-in.html</td><td>Best whey protein India — your top India page</td></tr>
+        <tr><td>Global Picks</td><td class="nav-url">https://health.brandmint.online/whey-us.html</td><td>Best whey protein global — Amazon US + Herbspro</td></tr>
+        <tr><td>Longevity</td><td class="nav-url">https://health.brandmint.online/longevity.html</td><td>NMN + anti-aging supplements (20% commission) — build this page first</td></tr>
+        <tr><td>Deals</td><td class="nav-url">https://health.brandmint.online/deals.html</td><td>Curated deals from all CJ partners</td></tr>
+        <tr><td>Dashboard</td><td class="nav-url">https://health.brandmint.online/dashboard.html</td><td>This command center — your personal view only</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ch-detail">
+    <div class="ch-detail-title">How to update any page without going back and forth</div>
+    <div class="ch-detail-sub">Every HTML page has all its product data in a clearly marked section at the top. When you want to update — a new product, a price change, a new top pick — just tell me: "Update whey-in.html top pick to [product]." I give you the exact replacement section. You copy it, open the file on GitHub, click Edit, paste, commit. Under 3 minutes per update.</div>
+    <ul class="rule-list">
+      <li>Monthly update trigger: say "BrandMint monthly update — [Month] [Year]" — I research all bestsellers and give you every change in one file</li>
+      <li>Single product update: say "Update [page] — replace [product] with [product]" — I give you the exact HTML snippet</li>
+      <li>New CJ link: say "Add [advertiser] CJ link [URL] to [page]" — I give you the updated button code</li>
+      <li>Price change: say "Update [product] price to [price] on [page]" — done in 60 seconds</li>
+    </ul>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ============================================================
+// === ALL TASK DATA — UPDATE THIS SECTION TO MODIFY TASKS ===
+// ============================================================
+const TASKS = [
+  // ---- WEEK 1: April 1-7 ----
+  {id:'t01',date:'2026-04-01',ch:'quora',   priority:'high',  title:'Complete Quora profile setup',             detail:'Name · headline · photo · topic credentials for Whey Protein, Nutritional Supplements, Fitness',  link:'https://www.quora.com/profile/Shashwat-B-8'},
+  {id:'t02',date:'2026-04-01',ch:'whatsapp',priority:'high',  title:'Create WhatsApp Channel',                  detail:'Name: "BrandMint Health | Supplement Deals India" · Settings → Privacy → Phone Number → Nobody',    link:''},
+  {id:'t03',date:'2026-04-01',ch:'whatsapp',priority:'high',  title:'Create Telegram channel',                  detail:'Same name as WhatsApp · Mirror all posts · UK audience',                                          link:''},
+  {id:'t04',date:'2026-04-01',ch:'quora',   priority:'high',  title:'Post Quora Q5 — Whey label reading guide', detail:'Search: "what to look for whey protein label India" · Educational answer, builds credibility first', link:'https://www.quora.com'},
+  {id:'t05',date:'2026-04-02',ch:'quora',   priority:'high',  title:'Post Quora Q1 — Best whey for beginners',  detail:'Search: "best whey protein India beginners" · Wait 2hrs after Q5',                                link:'https://www.quora.com'},
+  {id:'t06',date:'2026-04-02',ch:'quora',   priority:'high',  title:'Post Quora Q6 — Best multivitamin men',    detail:'Search: "best multivitamin India men" · Different category = diversified profile',                  link:'https://www.quora.com'},
+  {id:'t07',date:'2026-04-02',ch:'reddit',  priority:'medium','title':'Join Reddit communities',                detail:'Join: r/IndiaFitness, r/Supplements, r/WeightLoss, r/india, r/homegym · No links for 7 days',       link:'https://reddit.com'},
+  {id:'t08',date:'2026-04-03',ch:'pages',   priority:'high',  title:'Upload whey-us.html to GitHub',            detail:'File is in your downloads · GitHub repo → Add file → Upload files → Commit',                      link:'https://github.com/shashwatb-hub/brandmint-health'},
+  {id:'t09',date:'2026-04-03',ch:'pages',   priority:'high',  title:'Upload categories.html to GitHub',         detail:'File is in your downloads · Enables category navigation on site',                                  link:'https://github.com/shashwatb-hub/brandmint-health'},
+  {id:'t10',date:'2026-04-03',ch:'pages',   priority:'high',  title:'Upload dashboard.html to GitHub',          detail:'This file · Will be accessible at health.brandmint.online/dashboard.html',                        link:'https://github.com/shashwatb-hub/brandmint-health'},
+  {id:'t11',date:'2026-04-03',ch:'quora',   priority:'medium',title:'Post Quora Q11 — Best fish oil India',     detail:'Search: "best fish oil supplement India omega 3"',                                                link:'https://www.quora.com'},
+  {id:'t12',date:'2026-04-04',ch:'cj',      priority:'high',  title:'Get Longevity Method CJ tracking link',    detail:'CJ → Longevity Method → Get Code → Click URL tab → Copy · Paste in chat to build longevity.html',  link:'https://members.cj.com'},
+  {id:'t13',date:'2026-04-04',ch:'cj',      priority:'high',  title:'Send CJ outreach — Naked Nutrition',       detail:'CJ → Partners → Naked Nutrition → Send message: "I run BrandMint Health — supplement reviews for India and global markets. 8 live pages..."',link:'https://members.cj.com'},
+  {id:'t14',date:'2026-04-04',ch:'cj',      priority:'high',  title:'Send CJ outreach — Bulldog Online Yoga',   detail:'Same outreach template · $10/signup = highest EPC in your portfolio · No purchase required',         link:'https://members.cj.com'},
+  {id:'t15',date:'2026-04-04',ch:'cj',      priority:'high',  title:'Send CJ outreach — X3 + Life Extension + Vitalheal + Ayurveda Experience', detail:'Send same message to all 4 remaining pending advertisers',link:'https://members.cj.com'},
+  {id:'t16',date:'2026-04-04',ch:'cj',      priority:'medium',title:'Update CJ publisher profile description',  detail:'CJ → Account → Publisher Profile → Description: "BrandMint Health — research-based supplement reviews India and global. 8 live pages, Quora, Reddit, WhatsApp traffic."',link:'https://members.cj.com'},
+  {id:'t17',date:'2026-04-05',ch:'quora',   priority:'medium',title:'Post Quora Q7 + Q3',                       detail:'Q7: multivitamin men vs women · Q3: whey protein safe daily India',                                link:'https://www.quora.com'},
+  {id:'t18',date:'2026-04-05',ch:'hostinger',priority:'medium',title:'Add navigation tabs on Hostinger',        detail:'Add tabs: All Categories, India Picks, Global Picks, Longevity, Deals, Dashboard — see Hostinger Nav tab for exact URLs',link:'https://hostinger.com'},
+  {id:'t19',date:'2026-04-06',ch:'quora',   priority:'medium',title:'Post Quora Q16 + Q17',                     detail:'Q16: home gym India budget · Q17: resistance bands vs weights',                                    link:'https://www.quora.com'},
+  {id:'t20',date:'2026-04-06',ch:'reddit',  priority:'medium',title:'Post 5 helpful Reddit comments (no links)', detail:'r/IndiaFitness or r/Supplements — answer real questions genuinely, no links yet',                 link:'https://reddit.com'},
+  {id:'t21',date:'2026-04-07',ch:'medium',  priority:'medium',title:'Create Medium account + publish Article 1', detail:'Account: @brandminthealth · Article: "Best Whey Protein in India 2026 — I tested 6 brands" · 800 words · link to whey-in.html',link:'https://medium.com'},
+  // ---- WEEK 2: April 8-14 ----
+  {id:'t22',date:'2026-04-08',ch:'pages',   priority:'high',  title:'Build longevity.html (Claude builds)',     detail:'Paste Longevity Method CJ tracking link in chat → Claude builds full page with all 5 products at 20% commission',link:''},
+  {id:'t23',date:'2026-04-08',ch:'quora',   priority:'medium',title:'Post Quora Q2 + Q13',                      detail:'Q2: MuscleBlaze vs ON Gold Standard · Q13: fish oil burping how to avoid',                          link:'https://www.quora.com'},
+  {id:'t24',date:'2026-04-09',ch:'pages',   priority:'high',  title:'Build sleep.html (Claude builds)',         detail:'Tell Claude: "Build sleep.html using Herbspro and Longevity Method Sleep Better"',                  link:''},
+  {id:'t25',date:'2026-04-10',ch:'pages',   priority:'high',  title:'Build creatine.html (Claude builds)',      detail:'Requires Naked Nutrition CJ link · Tell Claude to build once link received',                         link:''},
+  {id:'t26',date:'2026-04-11',ch:'pages',   priority:'high',  title:'Build yoga.html (Claude builds)',          detail:'Requires Bulldog Yoga CJ link · $10 flat per free signup — no purchase needed',                     link:''},
+  {id:'t27',date:'2026-04-11',ch:'quora',   priority:'medium',title:'Post Quora Q18 + Q8',                      detail:'Q18: best treadmill under ₹20,000 India · Q8: is Himalayan Organics multivitamin worth buying',      link:'https://www.quora.com'},
+  {id:'t28',date:'2026-04-12',ch:'reddit',  priority:'medium',title:'First Reddit soft link drop',              detail:'In r/IndiaFitness — answer a question naturally, end with: "I wrote a detailed comparison at BrandMint Health if helpful"',link:'https://reddit.com'},
+  {id:'t29',date:'2026-04-12',ch:'medium',  priority:'medium',title:'Publish Medium Article 2',                 detail:'"Fish Oil India — What the Labels Don\'t Tell You" · 800+ words · link to fish-oil-in.html',        link:'https://medium.com'},
+  {id:'t30',date:'2026-04-13',ch:'quora',   priority:'medium',title:'Post Quora Q4 + Q9',                       detail:'Q4: how to check if whey is genuine Amazon India · Q9: best multivitamin for women India',           link:'https://www.quora.com'},
+  {id:'t31',date:'2026-04-14',ch:'pages',   priority:'medium',title:'Add Herbspro button to all 4 India pages', detail:'Claude gives you exact code snippet · Upload updated files to GitHub · 30 min task',                link:''},
+  {id:'t32',date:'2026-04-14',ch:'cj',      priority:'medium',title:'Check CJ — confirm pending approvals',     detail:'Log into CJ → Partners → check if Naked Nutrition, Bulldog Yoga, X3 have approved · Follow up with any still pending',link:'https://members.cj.com'},
+  // ---- WEEK 3: April 15-21 ----
+  {id:'t33',date:'2026-04-15',ch:'pages',   priority:'medium',title:'Build hair-skin.html (Claude builds)',     detail:'Ayurveda Experience 15% + Vitalheal 15% · High female Pinterest traffic',                             link:''},
+  {id:'t34',date:'2026-04-16',ch:'pages',   priority:'medium',title:'Build joint-health.html (Claude builds)',  detail:'Life Extension 6% + Vitalheal 15% via Herbspro',                                                  link:''},
+  {id:'t35',date:'2026-04-17',ch:'pages',   priority:'medium',title:'Build collagen.html (Claude builds)',      detail:'Requires Ayurveda Experience CJ link · 15% commission · Strong India + UK demand',                  link:''},
+  {id:'t36',date:'2026-04-17',ch:'medium',  priority:'medium',title:'Publish Medium Article 3',                 detail:'"NMN Supplements — What They Are and Do They Actually Work?" · Link to longevity.html',             link:'https://medium.com'},
+  {id:'t37',date:'2026-04-18',ch:'quora',   priority:'medium',title:'Post Quora Q12 + Q14 + Q19',              detail:'Q12: EPA vs DHA difference · Q14: triglyceride vs ethyl ester fish oil · Q19: adjustable vs fixed dumbbells',link:'https://www.quora.com'},
+  {id:'t38',date:'2026-04-19',ch:'pages',   priority:'medium',title:'Build deals.html (Claude builds)',         detail:'GearUP 70%, Kings Camo 5-8%, Velocity Outdoor — captures off-niche CJ traffic',                     link:''},
+  {id:'t39',date:'2026-04-20',ch:'whatsapp',priority:'medium',title:'Build 5-email Mailchimp welcome sequence', detail:'Create Mailchimp account first (mailchimp.com free) · Tell Claude to write the 5-email sequence',    link:'https://mailchimp.com'},
+  {id:'t40',date:'2026-04-21',ch:'quora',   priority:'medium',title:'Post Quora Q10 + Q15 + Q20',              detail:'Q10: multivitamin + whey together safe? · Q15: fish oil if no fish India · Q20: first home gym equipment',link:'https://www.quora.com'},
+  // ---- WEEK 4: April 22-30 ----
+  {id:'t41',date:'2026-04-24',ch:'reddit',  priority:'medium',title:'Publish Reddit comparison thread',         detail:'r/homegym: "X3 vs Bowflex vs TRX — I compared all 3" · This type goes viral regularly',                link:'https://reddit.com/r/homegym'},
+  {id:'t42',date:'2026-04-25',ch:'medium',  priority:'low',   title:'Publish Medium Article 4',                 detail:'"Longevity Supplements in 2026 — The Science Behind NMN, Urolithin A and Anti-Aging" · Link to longevity.html',link:'https://medium.com'},
+  {id:'t43',date:'2026-04-28',ch:'medium',  priority:'low',   title:'Publish Medium Article 5',                 detail:'"Best Home Gym Setup India 2026 — Under ₹10,000, ₹25,000 and ₹50,000"',                           link:'https://medium.com'},
+  {id:'t44',date:'2026-04-30',ch:'pages',   priority:'high',  title:'Monthly update — April 2026',             detail:'Say: "BrandMint monthly update — April 2026" in chat · Claude researches all bestsellers, gives change list',link:''},
+  // ---- MAY 2026: Pinterest rebuild ----
+  {id:'t45',date:'2026-04-30',ch:'pinterest',priority:'medium',title:'Create new Pinterest account (Day 30)',   detail:'New Gmail + different device + mobile data · Account: BrandMint Health Reviews · Profile only, no boards',link:'https://pinterest.com'},
+  {id:'t46',date:'2026-05-07',ch:'pinterest',priority:'low',   title:'Pinterest Day 8 — Create first board',   detail:'Board name: "Whey Protein India Guide" · 5 image-only pins, no links yet',                           link:''},
+  {id:'t47',date:'2026-05-14',ch:'pinterest',priority:'low',   title:'Pinterest Day 15 — Second board',        detail:'"Best Multivitamins India" · Continue growing profile organically',                                   link:''},
+  {id:'t48',date:'2026-05-20',ch:'pinterest',priority:'low',   title:'Pinterest Day 21 — First link pin',      detail:'Add first pin with external link to health.brandmint.online · One link pin only',                    link:''},
+  {id:'t49',date:'2026-05-31',ch:'pages',   priority:'medium',title:'Monthly update — May 2026',               detail:'Say: "BrandMint monthly update — May 2026" in chat',                                                link:''},
+];
+
+// ============================================================
+// === RUNTIME — DO NOT EDIT BELOW THIS LINE ===
+// ============================================================
+
+const STORAGE_KEY = 'bmh_tasks_v1';
+
+function loadDone() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch { return {}; }
+}
+function saveDone(done) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(done));
+}
+
+function formatDate(d) {
+  const dt = new Date(d + 'T00:00:00');
+  return dt.toLocaleDateString('en-GB', { day:'2-digit', month:'short' });
+}
+function isOverdue(d) {
+  return new Date(d + 'T23:59:59') < new Date();
+}
+function weekLabel(d) {
+  const dt = new Date(d + 'T00:00:00');
+  const opts = { day:'numeric', month:'long' };
+  const mon = new Date(dt);
+  mon.setDate(dt.getDate() - ((dt.getDay() + 6) % 7));
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  return 'Week of ' + mon.toLocaleDateString('en-GB', opts) + ' – ' + sun.toLocaleDateString('en-GB', opts);
+}
+
+function buildTasks(container, filter) {
+  const done = loadDone();
+  const tasks = filter === 'all' ? TASKS : TASKS.filter(t => t.ch === filter);
+  if (!tasks.length) { container.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:20px 0">No tasks in this channel yet.</p>'; return; }
+
+  // find first undone task
+  const firstUndone = tasks.find(t => !done[t.id]);
+
+  let html = '', lastWeek = '';
+  tasks.forEach(t => {
+    const wk = weekLabel(t.date);
+    if (wk !== lastWeek) {
+      if (lastWeek) html += '</div>';
+      html += `<div class="week-block"><div class="week-label">${wk}</div>`;
+      lastWeek = wk;
+    }
+    const isDone = !!done[t.id];
+    const isNext = firstUndone && t.id === firstUndone.id;
+    const isOver = !isDone && isOverdue(t.date);
+    let rowClass = 'task-row';
+    if (isDone) rowClass += ' done';
+    if (isNext) rowClass += ' next-up';
+    const pClass = t.priority === 'high' ? 'ph' : t.priority === 'medium' ? 'pm' : 'pl';
+    const pLabel = t.priority === 'high' ? 'High' : t.priority === 'medium' ? 'Medium' : 'Low';
+    const chColor = {quora:'cq',whatsapp:'cw',telegram:'ct',reddit:'cr',medium:'cm',cj:'cc',pages:'cg',hostinger:'ch',pinterest:'cp',longevity:'cl'}[t.ch] || 'cm';
+    const chLabel = {quora:'Quora',whatsapp:'WhatsApp',telegram:'Telegram',reddit:'Reddit',medium:'Medium',cj:'CJ',pages:'Pages',hostinger:'Hostinger',pinterest:'Pinterest'}[t.ch] || t.ch;
+    html += `<div class="${rowClass}" onclick="toggleTask('${t.id}')" id="row-${t.id}">
+      <div class="task-cb">
+        <svg class="check-svg" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="task-main">
+        <div class="task-top">
+          <span class="task-title">${t.title}</span>
+          ${isOver && !isDone ? '<span class="pill ph">Overdue</span>' : ''}
+        </div>
+        <div class="task-detail">${t.detail}</div>
+        ${t.link ? `<a class="task-link" href="${t.link}" target="_blank" onclick="event.stopPropagation()">Open → ${t.link.replace('https://','').split('/')[0]}</a>` : ''}
+      </div>
+      <div class="task-meta">
+        <span class="task-date">${formatDate(t.date)}</span>
+        <span class="pill ${pClass}">${pLabel}</span>
+        <span class="pill pn" style="margin-top:2px"><span class="ch-icon ${chColor}" style="width:14px;height:14px;font-size:8px;display:inline-flex;border-radius:3px;vertical-align:middle;margin-right:3px"></span>${chLabel}</span>
+      </div>
+    </div>`;
+  });
+  if (lastWeek) html += '</div>';
+  container.innerHTML = html;
+}
+
+function toggleTask(id) {
+  const done = loadDone();
+  done[id] = !done[id];
+  if (!done[id]) delete done[id];
+  saveDone(done);
+  refreshAll();
+}
+
+function refreshAll() {
+  const done = loadDone();
+  const total = TASKS.length;
+  const doneCount = TASKS.filter(t => done[t.id]).length;
+  const overdueCount = TASKS.filter(t => !done[t.id] && isOverdue(t.date)).length;
+  const pendingCount = total - doneCount;
+  const pct = total ? Math.round((doneCount / total) * 100) : 0;
+
+  document.getElementById('total-n').textContent = total;
+  document.getElementById('done-n').textContent = doneCount;
+  document.getElementById('pending-n').textContent = pendingCount;
+  document.getElementById('overdue-n').textContent = overdueCount;
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('pct-label').textContent = doneCount + ' / ' + total + ' tasks';
+  document.getElementById('overall-pct').textContent = pct + '% done';
+
+  // Quora specific
+  const qDone = TASKS.filter(t => t.ch === 'quora' && done[t.id]).length;
+  const qEl = document.getElementById('q-posted');
+  if (qEl) qEl.textContent = qDone;
+  const qBadge = document.getElementById('badge-quora');
+  const qPend = TASKS.filter(t => t.ch === 'quora' && !done[t.id]).length;
+  if (qBadge) qBadge.textContent = qPend;
+
+  buildTasks(document.getElementById('task-container'), 'all');
+  ['quora','whatsapp','reddit','medium','pinterest','cj','pages'].forEach(ch => {
+    const el = document.getElementById('task-container-' + ch);
+    if (el) buildTasks(el, ch);
+  });
+}
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.ch-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('show'));
+  const pane = document.getElementById('pane-' + tab);
+  if (pane) pane.classList.add('show');
+}
+
+// Init
+document.getElementById('todaydate').textContent = new Date().toLocaleDateString('en-GB', {weekday:'short',day:'numeric',month:'short',year:'numeric'});
+refreshAll();
+</script>
+</body>
+</html>
