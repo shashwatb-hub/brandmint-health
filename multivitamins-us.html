@@ -120,17 +120,28 @@ footer{background:#111827;color:rgba(255,255,255,0.6);padding:40px 20px;text-ali
 footer a{color:rgba(255,255,255,0.7)}
 .footer-brand{font-weight:700;color:white;font-size:16px;margin-bottom:8px}
 .disclosure{max-width:640px;margin:16px auto 0;padding:16px;background:rgba(255,255,255,0.07);border-radius:8px;font-size:12px;line-height:1.7;color:rgba(255,255,255,0.5)}
+
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-pill-sm{font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;padding:5px 11px;border-radius:100px;transition:all .15s;white-space:nowrap}
+.nav-pill-sm:hover{color:var(--text);background:var(--bg)}
+.nav-pill-lon{font-size:12px;font-weight:700;color:#fff;text-decoration:none;padding:5px 12px;border-radius:100px;background:#d97706;white-space:nowrap}
+.nav-pill-lon:hover{background:#b45309}
+@media(max-width:500px){.nav-pill-sm{display:none}.nav-pill-lon{font-size:11px;padding:4px 10px}}
 </style>
 </head>
 <body>
 <nav>
   <a href="https://brandmint.online" class="nav-brand">Brand<span>Mint</span> Health</a>
-  <a href="https://health.brandmint.online/multivitamins-in.html" class="india-link">India Picks →</a>
+  <div class="nav-links">
+    <a href="https://health.brandmint.online/categories.html" class="nav-pill-sm">Categories</a>
+    <a href="https://health.brandmint.online/indexmv.html" class="nav-pill-sm">🇮🇳 India</a>
+    <a href="https://health.brandmint.online/longevity.html" class="nav-pill-lon">Longevity NMN</a>
+  </div>
 </nav>
 <div class="india-banner">
   <div class="india-banner-inner">
     <p>🇮🇳 Looking for multivitamins available in India?</p>
-    <a href="https://health.brandmint.online/multivitamins-in.html">View India Edition →</a>
+    <a href="https://health.brandmint.online/indexmv.html">View India Edition →</a>
   </div>
 </div>
 <section class="hero">
